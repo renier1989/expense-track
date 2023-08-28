@@ -2,7 +2,7 @@
 import { useState } from "react";
 import closeModalIcon from "../img/cerrar.svg";
 import Message from "./Message";
-const Modal = ({ setModal, animateModal, setAnimateModal, setExpenses }) => {
+const Modal = ({ setModal, animateModal, setAnimateModal, setExpenses , setGastoEditar}) => {
   const [mensaje, setMensaje] = useState("");
   const [nombre, setNombre] = useState("");
   const [cantidad, setCantidad] = useState("");
@@ -23,6 +23,7 @@ const Modal = ({ setModal, animateModal, setAnimateModal, setExpenses }) => {
     setTimeout(() => {
       setModal(false);
     }, 500);
+    setGastoEditar({})
   };
   return (
     <div className="modal">
