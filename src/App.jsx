@@ -21,6 +21,7 @@ function App() {
   );
   const [gastoEditar, setGastoEditar] = useState({});
   const [filtro, setFiltro] = useState("");
+  const [gastosFiltrados, setGastosFiltrados] = useState([]);
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
@@ -28,11 +29,13 @@ function App() {
     }
   }, [gastoEditar]);
 
-  useEffect(()=>{
-if (filtro) {
-  console.log();
-}
-  },[filtro])
+  useEffect(() => {
+    if (filtro) {
+      const gastosFiltered = gastos.filter((gasto) => gasto.categoria === filtro);
+      console.log(filtro, gastosFiltered); 
+      setGastosFiltrados(gastosFiltered);
+    }
+  }, [filtro]);
 
   useEffect(() => {
     localStorage.setItem("presupuesto", presupuesto);

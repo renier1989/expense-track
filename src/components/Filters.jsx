@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const Filters = ({filtros, setFiltros}) => {
+const Filters = ({filtros, setFiltro}) => {
   return (
     <div className="filtros contenedor sombra">
       <form>
@@ -7,7 +7,7 @@ const Filters = ({filtros, setFiltros}) => {
           <label >Expenses Filter</label>
           <select 
           value={filtros}
-          onChange={(e)=>setFiltros(e.target.value)}
+          onChange={(e)=>setFiltro(e.target.value)}
           >
           <option value="">-- Select --</option>
             <option value="save">Save</option>
