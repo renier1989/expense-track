@@ -28,13 +28,26 @@ function App() {
   };
 
   const setExpenses = (expenses) => {
-    expenses.id = generarId();
-    expenses.fecha = Date.now();
-    setGastos([...gastos, expenses]);
+    if(expenses.id){
+      console.log('edito', expenses);
+      // aqui hago la edicion de los gastos
+      const gastosActualizados = gastos.map(gastoState => gastoState.id === expenses.id ? expenses: gastoState);
+      setGastos(gastosActualizados);
+
+    }else{
+      // aqui crao los gastos
+      expenses.id = generarId();
+      expenses.fecha = Date.now();
+      setGastos([...gastos, expenses]);
+    }
+    
+
+
     setAnimateModal(false);
     setTimeout(() => {
       setModal(false);
     }, 500);
+    setGastoEditar({})
     // console.log(expenses);
   };
 
