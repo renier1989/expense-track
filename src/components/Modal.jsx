@@ -1,6 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import closeModalIcon from "../img/cerrar.svg";
 const Modal = ({ setModal, animateModal, setAnimateModal }) => {
+    const [nombre , setNombre] = useState('');
+    const [cantidad , setCantidad] = useState('');
+    const [categoria , setCategoria] = useState('');
+
   const closeModal = () => {
     setAnimateModal(false);
     setTimeout(() => {
@@ -20,19 +25,26 @@ const Modal = ({ setModal, animateModal, setAnimateModal }) => {
             id="expense_name"
             type="text"
             placeholder="Entre the Expense Name"
+            value={nombre}
+            onChange={(e)=>setNombre(e.target.value)}
           />
         </div>
         <div className="campo">
           <label htmlFor="amount">Amount</label>
           <input
             id="amount"
-            type="text"
+            type="number"
             placeholder="Amount of the Expense Ex: $1000"
+            value={cantidad}
+            onChange={(e)=>setCantidad(Number(e.target.value))}
           />
         </div>
         <div className="campo">
           <label htmlFor="amount">Category</label>
-          <select name="" id="category">
+          <select name="" id="category"
+          value={categoria}
+          onChange={(e)=>setCategoria(e.target.value)}
+          >
             <option value="">-- Select --</option>
             <option value="save">Save</option>
             <option value="food">Food</option>
