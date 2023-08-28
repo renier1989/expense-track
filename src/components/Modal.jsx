@@ -1,10 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import closeModalIcon from "../img/cerrar.svg";
-const Modal = ({ setModal, animateModal, setAnimateModal }) => {
-    const [nombre , setNombre] = useState('');
-    const [cantidad , setCantidad] = useState('');
-    const [categoria , setCategoria] = useState('');
+import Message from "./Message";
+const Modal = ({ setModal, animateModal, setAnimateModal, setExpenses }) => {
+  const [mensaje, setMensaje] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [cantidad, setCantidad] = useState("");
+  const [categoria, setCategoria] = useState("");
+
+  const handleNewExpense = (e) => {
+    e.preventDefault();
+    if ([nombre, cantidad, categoria].includes("")) {
+      setMensaje("All Fields are required");
+      return;
+    }
+    setMensaje("");
+    setExpenses({nombre,cantidad,categoria})
+  };
 
   const closeModal = () => {
     setAnimateModal(false);
@@ -17,8 +29,13 @@ const Modal = ({ setModal, animateModal, setAnimateModal }) => {
       <div className="cerrar-modal">
         <img onClick={closeModal} src={closeModalIcon} alt="close-modal-icon" />
       </div>
-      <form className={`formulario ${animateModal ? "animar" : "cerrar"}`}>
+      <form
+        onSubmit={handleNewExpense}
+        className={`formulario ${animateModal ? "animar" : "cerrar"}`}
+      >
         <legend>New Expense</legend>
+        {mensaje && <Message type="error">{mensaje}</Message>}
+
         <div className="campo">
           <label htmlFor="expense_name">Expense Name</label>
           <input
@@ -26,7 +43,7 @@ const Modal = ({ setModal, animateModal, setAnimateModal }) => {
             type="text"
             placeholder="Entre the Expense Name"
             value={nombre}
-            onChange={(e)=>setNombre(e.target.value)}
+            onChange={(e) => setNombre(e.target.value)}
           />
         </div>
         <div className="campo">
@@ -36,14 +53,16 @@ const Modal = ({ setModal, animateModal, setAnimateModal }) => {
             type="number"
             placeholder="Amount of the Expense Ex: $1000"
             value={cantidad}
-            onChange={(e)=>setCantidad(Number(e.target.value))}
+            onChange={(e) => setCantidad(Number(e.target.value))}
           />
         </div>
         <div className="campo">
           <label htmlFor="amount">Category</label>
-          <select name="" id="category"
-          value={categoria}
-          onChange={(e)=>setCategoria(e.target.value)}
+          <select
+            name=""
+            id="category"
+            value={categoria}
+            onChange={(e) => setCategoria(e.target.value)}
           >
             <option value="">-- Select --</option>
             <option value="save">Save</option>

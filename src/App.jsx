@@ -8,6 +8,7 @@ function App() {
   const [isValidBudget, setIsValidBudget] = useState(false);
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
+  const [gastos, setGastos] = useState({});
 
   const handleModal = () => {
     setModal(true);
@@ -15,6 +16,11 @@ function App() {
       setAnimateModal(true)
     }, 500);
   };
+
+  const  setExpenses = expenses => {
+    
+    console.log(expenses);
+  }
 
   return (
     <div>
@@ -40,6 +46,7 @@ function App() {
           setModal={setModal}
           animateModal={animateModal}
           setAnimateModal={setAnimateModal}
+          setExpenses={setExpenses}
         />
       )}
     </div>
