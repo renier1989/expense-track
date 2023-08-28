@@ -7,7 +7,9 @@ const PlanBudget = ({presupuesto, gastos}) => {
     const [gastado , setGastado] = useState(0);
     useEffect(() => {
         const totalGastado = gastos.reduce((total, gasto)=> gasto.cantidad + total  , 0 );
-        setGastado(totalGastado)
+        const totalDisponible = presupuesto - totalGastado;
+        setDisponible(totalDisponible);
+        setGastado(totalGastado);
     }, [gastos]);
 
   return (
