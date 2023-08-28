@@ -1,8 +1,15 @@
-
-const Expense = () => {
+const Expense = ({ gasto }) => {
+  const { categoria, nombre, cantidad, id } = gasto;
   return (
-    <div>Expense</div>
-  )
-}
+    <div className="gasto sombra">
+      <div className="contenido-gasto">
+        <div className="descripcion-gasto">
+          <p className="categoria">{categoria}</p>
+          <p className="nombre-gasto">{nombre}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Expense
+export default Expense;

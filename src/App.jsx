@@ -22,6 +22,7 @@ function App() {
 
   const setExpenses = (expenses) => {
     expenses.id = generarId();
+    expenses.fecha = Date.now();
     setGastos([...gastos, expenses]);
     setAnimateModal(false);
     setTimeout(() => {
