@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import NewBudget from "./NewBudget";
+import PlanBudget from "./PlanBudget";
 
 const Header = ({
   presupuesto,
@@ -12,7 +13,7 @@ const Header = ({
     <header>
       <h1>Expanse Planner</h1>
       {isValidBudget ? (
-        <p>otro componente</p>
+        <PlanBudget presupuesto={presupuesto} />
       ) : (
         <NewBudget
           presupuesto={presupuesto}
