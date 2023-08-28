@@ -5,6 +5,7 @@ import newExpenseIcon from "./img/nuevo-gasto.svg";
 import Modal from "./components/Modal";
 import { generarId } from "./helpers";
 import ExpenesesList from "./components/ExpenesesList";
+import Filters from "./components/Filters";
 
 function App() {
   const [presupuesto, setPresupuesto] = useState(
@@ -19,12 +20,19 @@ function App() {
       : []
   );
   const [gastoEditar, setGastoEditar] = useState({});
+  const [filtro, setFiltro] = useState("");
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
       handleModal();
     }
   }, [gastoEditar]);
+
+  useEffect(()=>{
+if (filtro) {
+  console.log();
+}
+  },[filtro])
 
   useEffect(() => {
     localStorage.setItem("presupuesto", presupuesto);
@@ -91,6 +99,7 @@ function App() {
       {isValidBudget && (
         <>
           <main>
+            <Filters filtro={filtro} setFiltro={setFiltro} />
             <ExpenesesList
               gastos={gastos}
               setGastoEditar={setGastoEditar}
