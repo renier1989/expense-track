@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react'
+import Header from './components/Header'
 
 function App() {
 
   return (
-    <>
-      <h1>hola mundo</h1>
-    </>
+    <div>
+      < Header/>
+    </div>
   )
 }
 
