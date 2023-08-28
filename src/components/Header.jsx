@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import NewBudget from "./NewBudget";
 
-const Header = () => {
+const Header = ({ presupuesto, setPresupuesto }) => {
   return (
     <header>
       <h1>Expanse Planner</h1>
-      <NewBudget/>
+      <NewBudget presupuesto={presupuesto} setPresupuesto={setPresupuesto} />
     </header>
   );
 };
