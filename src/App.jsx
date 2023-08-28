@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
-      handleModal()
+      handleModal();
     }
   }, [gastoEditar]);
 
@@ -27,29 +27,34 @@ function App() {
     }, 500);
   };
 
+  // esta es una funcion para crear o editar los gastos
   const setExpenses = (expenses) => {
-    if(expenses.id){
-      console.log('edito', expenses);
+    if (expenses.id) {
+      console.log("edito", expenses);
       // aqui hago la edicion de los gastos
-      const gastosActualizados = gastos.map(gastoState => gastoState.id === expenses.id ? expenses: gastoState);
+      const gastosActualizados = gastos.map((gastoState) =>
+        gastoState.id === expenses.id ? expenses : gastoState
+      );
       setGastos(gastosActualizados);
-
-    }else{
+    } else {
       // aqui crao los gastos
       expenses.id = generarId();
       expenses.fecha = Date.now();
       setGastos([...gastos, expenses]);
     }
-    
-
-
     setAnimateModal(false);
     setTimeout(() => {
       setModal(false);
     }, 500);
-    setGastoEditar({})
+    setGastoEditar({});
     // console.log(expenses);
   };
+
+  const eliminarExpenses = id => {
+    const gastosActualizados = gastos.filter(gasto => gasto.id !== id);
+    setGastos(gastosActualizados);
+  }
+
 
   return (
     <div className={modal ? "fijar" : null}>
@@ -64,7 +69,7 @@ function App() {
       {isValidBudget && (
         <>
           <main>
-            <ExpenesesList gastos={gastos} setGastoEditar={setGastoEditar} />
+            <ExpenesesList gastos={gastos} setGastoEditar={setGastoEditar} eliminarExpenses={eliminarExpenses} />
           </main>
           <div className="nuevo-gasto">
             <img

@@ -27,7 +27,7 @@ const listIcons = {
   subscriptions: IconSus,
 };
 
-const Expense = ({ gasto, setGastoEditar }) => {
+const Expense = ({ gasto, setGastoEditar, eliminarExpenses }) => {
   const { categoria, nombre, cantidad, id, fecha } = gasto;
   const leadingActions = () => (
     <LeadingActions>
@@ -44,8 +44,9 @@ const Expense = ({ gasto, setGastoEditar }) => {
     <TrailingActions>
       <SwipeAction
         onClick={() => {
-          console.log("Eliminar");
+          eliminarExpenses(id)
         }}
+        destructive={true}
       >
         Delete
       </SwipeAction>
