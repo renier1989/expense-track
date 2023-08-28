@@ -12,7 +12,7 @@ const Header = ({
 }) => {
   return (
     <header>
-      <h1>Expanse Planner</h1>
+      <h1>Expense Planner</h1>
       {isValidBudget ? (
         <PlanBudget presupuesto={presupuesto} gastos={gastos} />
       ) : (
