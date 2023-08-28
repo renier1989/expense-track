@@ -3,8 +3,8 @@ import { useState } from "react";
 import Header from "./components/Header";
 import newExpenseIcon from "./img/nuevo-gasto.svg";
 import Modal from "./components/Modal";
-import {generarId} from "./helpers"
-
+import { generarId } from "./helpers";
+import ExpenesesList from "./components/ExpenesesList";
 
 function App() {
   const [presupuesto, setPresupuesto] = useState(0);
@@ -16,19 +16,19 @@ function App() {
   const handleModal = () => {
     setModal(true);
     setTimeout(() => {
-      setAnimateModal(true)
+      setAnimateModal(true);
     }, 500);
   };
 
-  const  setExpenses = expenses => {
+  const setExpenses = (expenses) => {
     expenses.id = generarId();
-    setGastos([...gastos,expenses]);
+    setGastos([...gastos, expenses]);
     setAnimateModal(false);
     setTimeout(() => {
       setModal(false);
     }, 500);
     // console.log(expenses);
-  }
+  };
 
   return (
     <div>
@@ -40,13 +40,18 @@ function App() {
       />
 
       {isValidBudget && (
-        <div className="nuevo-gasto">
-          <img
-            src={newExpenseIcon}
-            alt="new-expense-icon"
-            onClick={handleModal}
-          />
-        </div>
+        <>
+          <main>
+            <ExpenesesList gastos={gastos} />
+          </main>
+          <div className="nuevo-gasto">
+            <img
+              src={newExpenseIcon}
+              alt="new-expense-icon"
+              onClick={handleModal}
+            />
+          </div>
+        </>
       )}
 
       {modal && (
