@@ -1,12 +1,22 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import closeModalIcon from "../img/cerrar.svg";
 import Message from "./Message";
-const Modal = ({ setModal, animateModal, setAnimateModal, setExpenses , setGastoEditar}) => {
+const Modal = ({ setModal, animateModal, setAnimateModal, setExpenses ,gastoEditar, setGastoEditar }) => {
   const [mensaje, setMensaje] = useState("");
   const [nombre, setNombre] = useState("");
   const [cantidad, setCantidad] = useState("");
   const [categoria, setCategoria] = useState("");
+
+  useEffect(() => {
+    console.log('algo aqui ', gastoEditar);
+
+    if(Object.keys(gastoEditar).length > 0){
+        setNombre(gastoEditar.nombre);
+        setCantidad(gastoEditar.cantidad);
+        setCategoria(gastoEditar.categoria);
+    }
+  }, []);
 
   const handleNewExpense = (e) => {
     e.preventDefault();

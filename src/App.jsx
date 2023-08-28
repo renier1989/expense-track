@@ -16,10 +16,7 @@ function App() {
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
-      setModal(true);
-      setTimeout(() => {
-        setAnimateModal(true);
-      }, 500);  
+      handleModal()
     }
   }, [gastoEditar]);
 
@@ -72,6 +69,7 @@ function App() {
           animateModal={animateModal}
           setAnimateModal={setAnimateModal}
           setExpenses={setExpenses}
+          gastoEditar={gastoEditar}
           setGastoEditar={setGastoEditar}
         />
       )}
