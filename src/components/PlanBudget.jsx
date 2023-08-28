@@ -4,10 +4,19 @@ import { useEffect, useState } from "react";
 import { formatCurrency } from "../helpers";
 
 /* eslint-disable react/prop-types */
-const PlanBudget = ({presupuesto, gastos}) => {
+const PlanBudget = ({presupuesto, gastos, setGastos, setPresupuesto ,setIsValidBudget}) => {
     const [porcentaje , setPorcentaje] = useState(0);
     const [disponible , setDisponible] = useState(0);
     const [gastado , setGastado] = useState(0);
+    const handleResetApp = ()=>{
+        const resultado = confirm('Are you sure you want to reset?');
+
+        if(resultado){
+            setGastos([])
+            setPresupuesto(0)
+            setIsValidBudget(false)
+        }
+    }
     useEffect(() => {
         const totalGastado = gastos.reduce((total, gasto)=> gasto.cantidad + total  , 0 );
         const totalDisponible = presupuesto - totalGastado;
@@ -21,6 +30,7 @@ const PlanBudget = ({presupuesto, gastos}) => {
 
   return (
     <div className="contenedor-presupuesto contenedor sombra dos-columnas">
+        
       <div>
         <CircularProgressbar
         styles={buildStyles({
@@ -33,6 +43,7 @@ const PlanBudget = ({presupuesto, gastos}) => {
         />
       </div>
       <div className="contenido-presupuesto">
+      <button className='reset-app' type='button' onClick={handleResetApp}>Reset App</button>
         <p>
           <span>Your Budget: </span> {formatCurrency(presupuesto)}
         </p>

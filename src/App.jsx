@@ -93,6 +93,7 @@ function App() {
     <div className={modal ? "fijar" : null}>
       <Header
         gastos={gastos}
+        setGastos={setGastos}
         presupuesto={presupuesto}
         setPresupuesto={setPresupuesto}
         isValidBudget={isValidBudget}
@@ -105,6 +106,7 @@ function App() {
             <Filters filtro={filtro} setFiltro={setFiltro} />
             <ExpenesesList
               gastos={gastos}
+
               setGastoEditar={setGastoEditar}
               eliminarExpenses={eliminarExpenses}
               gastosFiltrados={gastosFiltrados}
