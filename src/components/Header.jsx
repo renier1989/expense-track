@@ -4,6 +4,7 @@ import NewBudget from "./NewBudget";
 import PlanBudget from "./PlanBudget";
 
 const Header = ({
+  gastos,
   presupuesto,
   setPresupuesto,
   isValidBudget,
@@ -13,7 +14,7 @@ const Header = ({
     <header>
       <h1>Expanse Planner</h1>
       {isValidBudget ? (
-        <PlanBudget presupuesto={presupuesto} />
+        <PlanBudget presupuesto={presupuesto} gastos={gastos} />
       ) : (
         <NewBudget
           presupuesto={presupuesto}
