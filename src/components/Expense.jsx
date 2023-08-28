@@ -29,18 +29,35 @@ const listIcons = {
 
 const Expense = ({ gasto }) => {
   const { categoria, nombre, cantidad, id, fecha } = gasto;
-  const leadingActions = () =>{
-      console.log('algo1');
-    }
-  const trailingActions = () =>{
-      console.log('algo2');
-    }
+  const leadingActions = () => (
+    <LeadingActions>
+      <SwipeAction
+      
+        onClick={() => {
+          console.log("Editar");
+        }}
+      >
+        Edit
+      </SwipeAction>
+    </LeadingActions>
+  );
+  const trailingActions = () => (
+    <TrailingActions>
+      <SwipeAction
+        onClick={() => {
+          console.log("Eliminar");
+        }}
+      >
+        Delete
+      </SwipeAction>
+    </TrailingActions>
+  );
   return (
     <SwipeableList>
       <SwipeableListItem
-        leadingActions={leadingActions}
-        trailingActions={trailingActions}
-        >
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
+      >
         <div className="gasto sombra">
           <div className="contenido-gasto">
             <img src={listIcons[categoria]} alt={`icon-${categoria}`} />
