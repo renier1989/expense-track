@@ -107,6 +107,8 @@ function App() {
               gastos={gastos}
               setGastoEditar={setGastoEditar}
               eliminarExpenses={eliminarExpenses}
+              gastosFiltrados={gastosFiltrados}
+              filtro={filtro}
             />
           </main>
           <div className="nuevo-gasto">
