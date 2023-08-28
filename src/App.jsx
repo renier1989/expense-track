@@ -7,11 +7,17 @@ import { generarId } from "./helpers";
 import ExpenesesList from "./components/ExpenesesList";
 
 function App() {
-  const [presupuesto, setPresupuesto] = useState(Number(localStorage.getItem("presupuesto")) ?? 0);
+  const [presupuesto, setPresupuesto] = useState(
+    Number(localStorage.getItem("presupuesto")) ?? 0
+  );
   const [isValidBudget, setIsValidBudget] = useState(false);
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
-  const [gastos, setGastos] = useState([]);
+  const [gastos, setGastos] = useState(
+    localStorage.getItem("gastos")
+      ? JSON.parse(localStorage.getItem("gastos"))
+      : []
+  );
   const [gastoEditar, setGastoEditar] = useState({});
 
   useEffect(() => {
@@ -20,18 +26,22 @@ function App() {
     }
   }, [gastoEditar]);
 
-  useEffect(()=>{
-    localStorage.setItem('presupuesto', presupuesto);
-  },[presupuesto])
+  useEffect(() => {
+    localStorage.setItem("presupuesto", presupuesto);
+  }, [presupuesto]);
 
-  useEffect(()=>{
-    const presupuestoLS  = Number(localStorage.getItem('presupuesto'));
-    if(presupuestoLS > 0){
-      setIsValidBudget(true)
-    }else{
-      setIsValidBudget(false)
+  useEffect(() => {
+    localStorage.setItem("gastos", JSON.stringify(gastos) ?? []);
+  }, [gastos]);
+
+  useEffect(() => {
+    const presupuestoLS = Number(localStorage.getItem("presupuesto"));
+    if (presupuestoLS > 0) {
+      setIsValidBudget(true);
+    } else {
+      setIsValidBudget(false);
     }
-  },[])
+  }, []);
 
   const handleModal = () => {
     setModal(true);
@@ -63,11 +73,10 @@ function App() {
     // console.log(expenses);
   };
 
-  const eliminarExpenses = id => {
-    const gastosActualizados = gastos.filter(gasto => gasto.id !== id);
+  const eliminarExpenses = (id) => {
+    const gastosActualizados = gastos.filter((gasto) => gasto.id !== id);
     setGastos(gastosActualizados);
-  }
-
+  };
 
   return (
     <div className={modal ? "fijar" : null}>
@@ -82,7 +91,11 @@ function App() {
       {isValidBudget && (
         <>
           <main>
-            <ExpenesesList gastos={gastos} setGastoEditar={setGastoEditar} eliminarExpenses={eliminarExpenses} />
+            <ExpenesesList
+              gastos={gastos}
+              setGastoEditar={setGastoEditar}
+              eliminarExpenses={eliminarExpenses}
+            />
           </main>
           <div className="nuevo-gasto">
             <img
