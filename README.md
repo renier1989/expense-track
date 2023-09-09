@@ -1,5 +1,5 @@
 
-# Citas Veterinaras project  [DEMO](https://renier1989.github.io/expense-track/)
+# Expense Planeer project  [DEMO](https://renier1989.github.io/expense-track/)
 
 This is a small project that allows you to manage your expenses, created entirely with React.js.
 
